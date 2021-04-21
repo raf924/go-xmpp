@@ -44,6 +44,9 @@ func (t *XMPPTransport) Connect() (string, error) {
 	t.readWriter = newStreamLogger(t.conn, t.logFile)
 	t.decoder = xml.NewDecoder(bufio.NewReaderSize(t.readWriter, maxPacketSize))
 	t.decoder.CharsetReader = t.Config.CharsetReader
+	if err := t.StartTLS(); err != nil {
+		return "", NewConnError(err, true)
+	}
 	return t.StartStream()
 }
 
