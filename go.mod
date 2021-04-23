@@ -1,4 +1,4 @@
-module gosrc.io/xmpp
+module github.com/raf924/go-xmpp
 
 go 1.13
 
